@@ -1,0 +1,2884 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
+     Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+     For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot
+  name="LeftArmHandURDFV3">
+  <link
+    name="base_link">
+    <inertial>
+      <origin
+        xyz="-0.0245577221612072 3.05311331771918E-15 5.55111512312578E-17"
+        rpy="0 0 0" />
+      <mass
+        value="3.93858677066438" />
+      <inertia
+        ixx="0.0120451992803257"
+        ixy="-2.09882662845242E-18"
+        ixz="1.89450717058375E-18"
+        iyy="0.0220950401422928"
+        iyz="1.56642703837033E-06"
+        izz="0.0144098354435757" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/base_link.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/base_link.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <link
+    name="l_shoulder1">
+    <inertial>
+      <origin
+        xyz="-4.28648242644242E-05 0.00563895288355709 0.0590002883559256"
+        rpy="0 0 0" />
+      <mass
+        value="0.478471991055908" />
+      <inertia
+        ixx="0.000538429029896492"
+        ixy="-7.72402995486987E-07"
+        ixz="7.90769468619253E-08"
+        iyy="0.000513021824528363"
+        iyz="-9.92288123103202E-06"
+        izz="0.000515544957290594" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_shoulder1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_shoulder1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jshoulder1"
+    type="revolute">
+    <origin
+      xyz="0 0.196 0"
+      rpy="-1.5708 1.5708 0" />
+    <parent
+      link="base_link" />
+    <child
+      link="l_shoulder1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_shoulder2">
+    <inertial>
+      <origin
+        xyz="0.069531551444729 0.000155024274671289 -0.0129636589597232"
+        rpy="0 0 0" />
+      <mass
+        value="0.266027713238003" />
+      <inertia
+        ixx="0.000263703580685733"
+        ixy="1.5997411536119E-07"
+        ixz="1.93738394368443E-06"
+        iyy="0.000453078900715468"
+        iyz="3.33148445189551E-08"
+        izz="0.000466701173226785" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_shoulder2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_shoulder2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jshoulder2"
+    type="revolute">
+    <origin
+      xyz="0 0.0425 0.0625"
+      rpy="-1.5708 0 0" />
+    <parent
+      link="l_shoulder1" />
+    <child
+      link="l_shoulder2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_shoulder3">
+    <inertial>
+      <origin
+        xyz="-0.00242269726604344 -0.00129497917922705 0.135827635699124"
+        rpy="0 0 0" />
+      <mass
+        value="0.664940739640707" />
+      <inertia
+        ixx="0.00334636586407012"
+        ixy="-6.6410956833853E-06"
+        ixz="-1.73748304071315E-05"
+        iyy="0.00395863623235683"
+        iyz="-1.95503049602617E-05"
+        izz="0.000933071819308939" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_shoulder3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_shoulder3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jshoulder3"
+    type="revolute">
+    <origin
+      xyz="0.1415 0 -0.0425"
+      rpy="0 1.5708 0" />
+    <parent
+      link="l_shoulder2" />
+    <child
+      link="l_shoulder3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_elbow1">
+    <inertial>
+      <origin
+        xyz="0.0399999999999076 0.00758743309975929 0.00249516500161862"
+        rpy="0 0 0" />
+      <mass
+        value="0.129824829338474" />
+      <inertia
+        ixx="6.11265199774516E-05"
+        ixy="-8.03270621825326E-17"
+        ixz="-3.22063760830232E-17"
+        iyy="0.000199763417800875"
+        iyz="8.30295706160526E-09"
+        izz="0.00023307601506724" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_elbow1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_elbow1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jelbow1"
+    type="revolute">
+    <origin
+      xyz="0 0.010547 0.312"
+      rpy="1.5705 -1.5708 0" />
+    <parent
+      link="l_shoulder3" />
+    <child
+      link="l_elbow1" />
+    <axis
+      xyz="0 -0.00024924 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_elbow2">
+    <inertial>
+      <origin
+        xyz="0.102915223030001 0.00134469650398422 0.00587078679895037"
+        rpy="0 0 0" />
+      <mass
+        value="0.369312240286826" />
+      <inertia
+        ixx="0.00069085614188651"
+        ixy="2.62753460450778E-05"
+        ixz="1.19475963395139E-07"
+        iyy="0.000625231947516904"
+        iyz="2.13069466290337E-08"
+        izz="0.000689773940799891" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_elbow2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_elbow2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jelbow2"
+    type="revolute">
+    <origin
+      xyz="0.08 0 -5.2916E-05"
+      rpy="-0.00024924 0 0" />
+    <parent
+      link="l_elbow1" />
+    <child
+      link="l_elbow2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_wrist1">
+    <inertial>
+      <origin
+        xyz="-0.00130162148086721 -2.45275958499214E-06 0.129799172429874"
+        rpy="0 0 0" />
+      <mass
+        value="0.477294050715265" />
+      <inertia
+        ixx="0.00238875692083017"
+        ixy="2.95183872073207E-08"
+        ixz="4.47727003394783E-05"
+        iyy="0.00236149715373802"
+        iyz="-7.05844312804006E-10"
+        izz="0.000436071480580569" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_wrist1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_wrist1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jwrist1"
+    type="revolute">
+    <origin
+      xyz="0.173899999999969 0 0.00760000000000133"
+      rpy="-1.5707963267949 0 -1.57079632679474" />
+    <parent
+      link="l_elbow2" />
+    <child
+      link="l_wrist1" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_wrist2">
+    <inertial>
+      <origin
+        xyz="-0.000395146500561383 0.0220046354959901 -7.84024680284823E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.0546789660832691" />
+      <inertia
+        ixx="1.59122000429047E-05"
+        ixy="5.74374208777215E-08"
+        ixz="1.42957799790301E-09"
+        iyy="1.94210484468585E-05"
+        iyz="4.17441414983889E-08"
+        izz="1.10425059383313E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_wrist2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_wrist2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jwrist2"
+    type="revolute">
+    <origin
+      xyz="-0.00374999999991976 0 0.336000000000001"
+      rpy="3.1415926535898 -1.5707963267949 0" />
+    <parent
+      link="l_wrist1" />
+    <child
+      link="l_wrist2" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_wrist3">
+    <inertial>
+      <origin
+        xyz="1.28951922297449E-05 -0.00973023397619038 -0.0263691546954095"
+        rpy="0 0 0" />
+      <mass
+        value="0.0182717739131969" />
+      <inertia
+        ixx="1.34586135705447E-05"
+        ixy="3.72712931478664E-09"
+        ixz="-6.21313937676889E-09"
+        iyy="1.30171798697199E-05"
+        iyz="8.09449795898802E-07"
+        izz="8.3018867685469E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_wrist3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_wrist3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jwrist3"
+    type="revolute">
+    <origin
+      xyz="0 0 0"
+      rpy="0 -1.5707963267949 0" />
+    <parent
+      link="l_wrist2" />
+    <child
+      link="l_wrist3" />
+    <axis
+      xyz="0 1 0" />
+    <limit
+      lower="-1.57"
+      upper="1.57"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_handbase">
+    <inertial>
+      <origin
+        xyz="0.0509545068203636 0.000404874419297152 0.00163480218032513"
+        rpy="0 0 0" />
+      <mass
+        value="0.11584850535342" />
+      <inertia
+        ixx="4.62249547149792E-05"
+        ixy="-3.17464680589037E-06"
+        ixz="-8.24336269478644E-07"
+        iyy="6.5006752559142E-05"
+        iyz="-1.41237081098142E-08"
+        izz="0.000107316413101042" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_handbase.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_handbase.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jhandbase"
+    type="fixed">
+    <origin
+      xyz="0 -0.00994999999999929 -0.0450000000000004"
+      rpy="1.5707963267949 1.5707963267949 0" />
+    <parent
+      link="l_wrist3" />
+    <child
+      link="l_handbase" />
+    <axis
+      xyz="0 0 0" />
+  </joint>
+  <link
+    name="l_thumb1">
+    <inertial>
+      <origin
+        xyz="0.00519999999999995 7.7715611723761E-16 0.000149999999998096"
+        rpy="0 0 0" />
+      <mass
+        value="0.000238764925590342" />
+      <inertia
+        ixx="3.10501993540728E-09"
+        ixy="-1.31521717395931E-22"
+        ixz="2.50222135297291E-23"
+        iyy="6.24022701729404E-09"
+        iyz="1.55096364853693E-25"
+        izz="3.36052675076494E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb1"
+    type="revolute">
+    <origin
+      xyz="0.0520110761278898 0.0334106013473797 0.0056000000000001"
+      rpy="1.27878882311034 -0.763777790946073 1.40926843575484" />
+    <parent
+      link="l_handbase" />
+    <child
+      link="l_thumb1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb2">
+    <inertial>
+      <origin
+        xyz="0.00814686644678475 0.000995136407689667 -1.04376374645554E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00356803268352128" />
+      <inertia
+        ixx="8.79696761425054E-08"
+        ixy="2.32353684856881E-09"
+        ixz="2.35420968943124E-09"
+        iyy="1.00351987247218E-07"
+        iyz="5.43264037619202E-10"
+        izz="8.68898501083819E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb2"
+    type="revolute">
+    <origin
+      xyz="0.0104000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_thumb1" />
+    <child
+      link="l_thumb2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb3">
+    <inertial>
+      <origin
+        xyz="0.00760000000000008 -4.44089209850063E-16 0.00249999999999984"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526647" />
+      <inertia
+        ixx="3.30678969741861E-09"
+        ixy="-7.6876098179147E-23"
+        ixz="4.80798731046447E-23"
+        iyy="1.96692153253637E-08"
+        iyz="-1.75775880167518E-23"
+        izz="1.71736705231725E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb3"
+    type="revolute">
+    <origin
+      xyz="0.0132600649313707 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="l_thumb2" />
+    <child
+      link="l_thumb3" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb4">
+    <inertial>
+      <origin
+        xyz="0.0171084870466681 0.00220731498252735 -0.00126878063134162"
+        rpy="0 0 0" />
+      <mass
+        value="0.00661288261620848" />
+      <inertia
+        ixx="1.38975992887601E-07"
+        ixy="4.07935790900096E-09"
+        ixz="-1.05450949696324E-09"
+        iyy="1.19402015855595E-06"
+        iyz="-1.18633867864344E-09"
+        izz="1.22545759778614E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb4"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_thumb3" />
+    <child
+      link="l_thumb4" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb5">
+    <inertial>
+      <origin
+        xyz="0.0076 -2.22044604925031E-16 0.00249999999999984"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526648" />
+      <inertia
+        ixx="3.30678969741863E-09"
+        ixy="-8.37520370209941E-23"
+        ixz="1.64402146744914E-23"
+        iyy="1.96692153253637E-08"
+        iyz="-1.94387443949962E-23"
+        izz="1.71736705231725E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb5"
+    type="revolute">
+    <origin
+      xyz="0.0340000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_thumb4" />
+    <child
+      link="l_thumb5" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb6">
+    <inertial>
+      <origin
+        xyz="0.0104585475379186 0.000405203111151886 -0.00173774564464091"
+        rpy="0 0 0" />
+      <mass
+        value="0.0052008626569703" />
+      <inertia
+        ixx="1.15001653437084E-07"
+        ixy="2.44305020006855E-09"
+        ixz="2.11014651954353E-10"
+        iyy="4.70051172809416E-07"
+        iyz="-1.03268197923374E-09"
+        izz="5.31554185671917E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb6"
+    type="revolute">
+    <origin
+      xyz="0.0152 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_thumb5" />
+    <child
+      link="l_thumb6" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb7">
+    <inertial>
+      <origin
+        xyz="0.0076 2.22044604925031E-16 0.00249999999999984"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526648" />
+      <inertia
+        ixx="3.30678969741863E-09"
+        ixy="-8.15289891247578E-23"
+        ixz="-6.20385459414771E-24"
+        iyy="1.96692153253637E-08"
+        iyz="-1.77843831698901E-23"
+        izz="1.71736705231725E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb7"
+    type="revolute">
+    <origin
+      xyz="0.0210000000000002 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_thumb6" />
+    <child
+      link="l_thumb7" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_thumb8">
+    <inertial>
+      <origin
+        xyz="0.0118629331403791 2.53116984546553E-05 -0.000508457088368108"
+        rpy="0 0 0" />
+      <mass
+        value="0.00624074454038705" />
+      <inertia
+        ixx="1.33112890070389E-07"
+        ixy="2.55177958918903E-08"
+        ixz="7.74065193520298E-09"
+        iyy="4.05014880120039E-07"
+        iyz="-1.16899158766193E-09"
+        izz="3.89132821840768E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_thumb8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jthumb8"
+    type="revolute">
+    <origin
+      xyz="0.0151999999999999 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_thumb7" />
+    <child
+      link="l_thumb8" />
+    <axis
+      xyz="0 0 -1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index1">
+    <inertial>
+      <origin
+        xyz="0.00520000000000032 5.55111512312578E-17 -0.000350000000000517"
+        rpy="0 0 0" />
+      <mass
+        value="0.000238764925590337" />
+      <inertia
+        ixx="3.10501993540718E-09"
+        ixy="-7.0748301248738E-24"
+        ixz="-3.08314803493324E-24"
+        iyy="6.24022701729392E-09"
+        iyz="3.92249840988025E-25"
+        izz="3.36052675076491E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex1"
+    type="revolute">
+    <origin
+      xyz="0.087900000000001 0.0374999999999993 -0.000399999999999179"
+      rpy="0 0 0" />
+    <parent
+      link="l_handbase" />
+    <child
+      link="l_index1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index2">
+    <inertial>
+      <origin
+        xyz="0.00814688633727578 0.000995142250989733 -1.04385945861596E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00356802047775321" />
+      <inertia
+        ixx="8.79696016770262E-08"
+        ixy="2.32355231318636E-09"
+        ixz="2.35421600026823E-09"
+        iyy="1.00351725934249E-07"
+        iyz="5.43265671669016E-10"
+        izz="8.68895962587191E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex2"
+    type="revolute">
+    <origin
+      xyz="0.0104 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_index1" />
+    <child
+      link="l_index2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index3">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 -2.77555756156289E-16 0.00250000000000006"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741857E-09"
+        ixy="-1.57996097994714E-24"
+        ixz="1.54020091299322E-23"
+        iyy="1.96692153253638E-08"
+        iyz="-1.96739401167251E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex3"
+    type="revolute">
+    <origin
+      xyz="0.013260064931369 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="l_index2" />
+    <child
+      link="l_index3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index4">
+    <inertial>
+      <origin
+        xyz="0.0169989009346339 0.000775914195903837 -0.00032389368838831"
+        rpy="0 0 0" />
+      <mass
+        value="0.00614303051893769" />
+      <inertia
+        ixx="1.31649105777222E-07"
+        ixy="3.41570314280931E-10"
+        ixz="9.71587597086613E-10"
+        iyy="1.20972202116464E-06"
+        iyz="-4.11546167417793E-10"
+        izz="1.29037776380839E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex4"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_index3" />
+    <child
+      link="l_index4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index5">
+    <inertial>
+      <origin
+        xyz="0.00760000000000027 -2.22044604925031E-16 0.00160000000000005"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526648" />
+      <inertia
+        ixx="3.30678969741857E-09"
+        ixy="-4.29598705274219E-24"
+        ixz="-8.29064205009591E-24"
+        iyy="1.96692153253639E-08"
+        iyz="8.22385873294371E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex5"
+    type="revolute">
+    <origin
+      xyz="0.034 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_index4" />
+    <child
+      link="l_index5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index6">
+    <inertial>
+      <origin
+        xyz="0.00599328393915366 0.000343236205303188 -0.000966366604878033"
+        rpy="0 0 0" />
+      <mass
+        value="0.00380898023532253" />
+      <inertia
+        ixx="8.11078604818166E-08"
+        ixy="-4.98426780555112E-10"
+        ixz="-5.68146177877419E-10"
+        iyy="1.95808517390969E-07"
+        iyz="1.32607604707548E-10"
+        izz="2.45248849839295E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex6"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_index5" />
+    <child
+      link="l_index6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index7">
+    <inertial>
+      <origin
+        xyz="0.00759999999999983 -1.11022302462516E-16 0.00159999999999999"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741857E-09"
+        ixy="-4.42080220509988E-24"
+        ixz="-6.54510499116227E-24"
+        iyy="1.96692153253639E-08"
+        iyz="3.08147810155066E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex7"
+    type="revolute">
+    <origin
+      xyz="0.0119999999999998 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_index6" />
+    <child
+      link="l_index7" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_index8">
+    <inertial>
+      <origin
+        xyz="0.0118630375667594 2.52726262804925E-05 -0.000408493109359309"
+        rpy="0 0 0" />
+      <mass
+        value="0.00624079716514989" />
+      <inertia
+        ixx="1.33114051054288E-07"
+        ixy="2.55174245090354E-08"
+        ixz="7.74404335228197E-09"
+        iyy="4.05018372214316E-07"
+        iyz="-1.16857210882931E-09"
+        izz="3.89133893070857E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_index8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jindex8"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_index7" />
+    <child
+      link="l_index8" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid1">
+    <inertial>
+      <origin
+        xyz="0.00520000000000032 4.44089209850063E-16 0.00014999999999854"
+        rpy="0 0 0" />
+      <mass
+        value="0.000238764925590337" />
+      <inertia
+        ixx="3.10501993540721E-09"
+        ixy="-6.49112803984787E-24"
+        ixz="-1.54896354750817E-25"
+        iyy="6.24022701729396E-09"
+        iyz="2.78083445021746E-25"
+        izz="3.36052675076492E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid1"
+    type="revolute">
+    <origin
+      xyz="0.0948999999999998 0.0124999999999993 -0.000399999999998957"
+      rpy="0 0 0" />
+    <parent
+      link="l_handbase" />
+    <child
+      link="l_mid1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid2">
+    <inertial>
+      <origin
+        xyz="0.00814688633727711 0.000995142250989567 -1.04385945863261E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.0035680204777529" />
+      <inertia
+        ixx="8.79696016770212E-08"
+        ixy="2.32355231318725E-09"
+        ixz="2.35421600027046E-09"
+        iyy="1.00351725934241E-07"
+        iyz="5.43265671669032E-10"
+        izz="8.68895962587117E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid2"
+    type="revolute">
+    <origin
+      xyz="0.0104 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_mid1" />
+    <child
+      link="l_mid2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid3">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 0 0.00250000000000006"
+        rpy="0 0 0" />
+      <mass
+        value="0.00042980255552665" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-8.41597092530738E-25"
+        ixz="-1.19673722970877E-23"
+        iyy="1.96692153253639E-08"
+        iyz="-8.04689581963764E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid3"
+    type="revolute">
+    <origin
+      xyz="0.0132600649313703 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="l_mid2" />
+    <child
+      link="l_mid3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid4">
+    <inertial>
+      <origin
+        xyz="0.0169989009346343 0.000775914195903671 -0.000323893688388421"
+        rpy="0 0 0" />
+      <mass
+        value="0.00614303051893769" />
+      <inertia
+        ixx="1.31649105777223E-07"
+        ixy="3.41570314284564E-10"
+        ixz="9.71587597090448E-10"
+        iyy="1.20972202116463E-06"
+        iyz="-4.11546167417245E-10"
+        izz="1.29037776380838E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid4"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_mid3" />
+    <child
+      link="l_mid4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid5">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 -3.88578058618805E-16 0.00159999999999999"
+        rpy="0 0 0" />
+      <mass
+        value="0.00042980255552665" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-8.08639025548903E-25"
+        ixz="-9.62577488394748E-24"
+        iyy="1.96692153253639E-08"
+        iyz="-1.02734861555352E-24"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid5"
+    type="revolute">
+    <origin
+      xyz="0.0339999999999998 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_mid4" />
+    <child
+      link="l_mid5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid6">
+    <inertial>
+      <origin
+        xyz="0.00599328393915433 0.000343236205303465 -0.000966366604877755"
+        rpy="0 0 0" />
+      <mass
+        value="0.00380898023532268" />
+      <inertia
+        ixx="8.11078604818194E-08"
+        ixy="-4.98426780559876E-10"
+        ixz="-5.68146177877302E-10"
+        iyy="1.95808517390983E-07"
+        iyz="1.32607604706782E-10"
+        izz="2.45248849839313E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid6"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_mid5" />
+    <child
+      link="l_mid6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid7">
+    <inertial>
+      <origin
+        xyz="0.00759999999999983 0 0.00160000000000005"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741857E-09"
+        ixy="-3.74890825007124E-24"
+        ixz="-1.24912344751615E-23"
+        iyy="1.96692153253639E-08"
+        iyz="-5.89249859484292E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid7"
+    type="revolute">
+    <origin
+      xyz="0.012 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_mid6" />
+    <child
+      link="l_mid7" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_mid8">
+    <inertial>
+      <origin
+        xyz="0.0118630380117262 2.52726499435085E-05 -0.00040849288321132"
+        rpy="0 0 0" />
+      <mass
+        value="0.00624079698225687" />
+      <inertia
+        ixx="1.3311405071288E-07"
+        ixy="2.55174243872546E-08"
+        ixz="7.74404544905846E-09"
+        iyy="4.05018360361076E-07"
+        iyz="-1.16857213369857E-09"
+        izz="3.89133881560187E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_mid8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jmid8"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_mid7" />
+    <child
+      link="l_mid8" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring1">
+    <inertial>
+      <origin
+        xyz="0.00520000000000009 4.44089209850063E-16 0.000349999999999628"
+        rpy="0 0 0" />
+      <mass
+        value="0.000238764925590337" />
+      <inertia
+        ixx="3.10501993540721E-09"
+        ixy="-7.12339765477548E-24"
+        ixz="-2.02168330502736E-25"
+        iyy="6.24022701729395E-09"
+        iyz="3.55823038848019E-25"
+        izz="3.36052675076492E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring1"
+    type="revolute">
+    <origin
+      xyz="0.0878999999999996 -0.0125000000000008 -0.000399999999999179"
+      rpy="0 0 0" />
+    <parent
+      link="l_handbase" />
+    <child
+      link="l_ring1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring2">
+    <inertial>
+      <origin
+        xyz="0.00814688633727667 0.000995142250989789 -1.04385945862706E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00356802047775296" />
+      <inertia
+        ixx="8.79696016770222E-08"
+        ixy="2.32355231318686E-09"
+        ixz="2.35421600027105E-09"
+        iyy="1.0035172593424E-07"
+        iyz="5.43265671669067E-10"
+        izz="8.68895962587125E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring2"
+    type="revolute">
+    <origin
+      xyz="0.0104 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_ring1" />
+    <child
+      link="l_ring2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring3">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 -2.22044604925031E-16 0.00249999999999995"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-1.54483041591495E-24"
+        ixz="-4.21521582214797E-24"
+        iyy="1.96692153253639E-08"
+        iyz="-2.0461944979414E-26"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring3"
+    type="revolute">
+    <origin
+      xyz="0.0132600649313703 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="l_ring2" />
+    <child
+      link="l_ring3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring4">
+    <inertial>
+      <origin
+        xyz="0.0169989009346347 0.000775914195903726 -0.00032389368838881"
+        rpy="0 0 0" />
+      <mass
+        value="0.0061430305189373" />
+      <inertia
+        ixx="1.31649105777218E-07"
+        ixy="3.41570314275364E-10"
+        ixz="9.71587597085607E-10"
+        iyy="1.20972202116452E-06"
+        iyz="-4.11546167417572E-10"
+        izz="1.29037776380827E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring4"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_ring3" />
+    <child
+      link="l_ring4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring5">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 -1.66533453693773E-16 0.00159999999999993"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-1.54864684961763E-24"
+        ixz="-6.50644423763963E-24"
+        iyy="1.96692153253639E-08"
+        iyz="-5.2398466907848E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring5"
+    type="revolute">
+    <origin
+      xyz="0.0339999999999998 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_ring4" />
+    <child
+      link="l_ring5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring6">
+    <inertial>
+      <origin
+        xyz="0.00599328393915366 0.000343236205303299 -0.000966366604878421"
+        rpy="0 0 0" />
+      <mass
+        value="0.00380898023532264" />
+      <inertia
+        ixx="8.11078604818177E-08"
+        ixy="-4.98426780553934E-10"
+        ixz="-5.68146177877689E-10"
+        iyy="1.95808517390981E-07"
+        iyz="1.32607604707325E-10"
+        izz="2.45248849839309E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring6"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_ring5" />
+    <child
+      link="l_ring6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring7">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 0 0.00159999999999988"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-1.55444992974192E-24"
+        ixz="-2.93928175247825E-24"
+        iyy="1.96692153253639E-08"
+        iyz="-2.3963304089944E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring7"
+    type="revolute">
+    <origin
+      xyz="0.012 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_ring6" />
+    <child
+      link="l_ring7" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_ring8">
+    <inertial>
+      <origin
+        xyz="0.011863038010508 2.52726492747657E-05 -0.000408492882518707"
+        rpy="0 0 0" />
+      <mass
+        value="0.00624079698147982" />
+      <inertia
+        ixx="1.33114050682165E-07"
+        ixy="2.55174243827348E-08"
+        ixz="7.74404542212566E-09"
+        iyy="4.05018360331182E-07"
+        iyz="-1.16857212720088E-09"
+        izz="3.89133881558719E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_ring8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jring8"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_ring7" />
+    <child
+      link="l_ring8" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little1">
+    <inertial>
+      <origin
+        xyz="0.00520000000000009 0 0.000149999999998707"
+        rpy="0 0 0" />
+      <mass
+        value="0.000238764925590337" />
+      <inertia
+        ixx="3.10501993540721E-09"
+        ixy="6.8855755829278E-24"
+        ixz="-2.14913672315123E-24"
+        iyy="6.24022701729395E-09"
+        iyz="3.02697443404222E-25"
+        izz="3.36052675076492E-09" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle1"
+    type="revolute">
+    <origin
+      xyz="0.080899999999998 -0.037500000000002 -0.000399999999999123"
+      rpy="0 0 0" />
+    <parent
+      link="l_handbase" />
+    <child
+      link="l_little1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little2">
+    <inertial>
+      <origin
+        xyz="0.00814688633727934 0.000995142250991288 -1.04385945860486E-05"
+        rpy="0 0 0" />
+      <mass
+        value="0.00356802047775308" />
+      <inertia
+        ixx="8.79696016770266E-08"
+        ixy="2.32355231318628E-09"
+        ixz="2.35421600026978E-09"
+        iyy="1.00351725934249E-07"
+        iyz="5.43265671669004E-10"
+        izz="8.68895962587165E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle2"
+    type="revolute">
+    <origin
+      xyz="0.0104 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_little1" />
+    <child
+      link="l_little2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.5"
+      upper="0.5"
+      effort="1"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little3">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 0 0.00250000000000011"
+        rpy="0 0 0" />
+      <mass
+        value="0.000429802555526649" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-1.54712656836586E-24"
+        ixz="-7.51692327882998E-24"
+        iyy="1.96692153253639E-08"
+        iyz="-5.17480961857793E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little3.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little3.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle3"
+    type="revolute">
+    <origin
+      xyz="0.0132600649313719 0 0"
+      rpy="1.5707963267949 0 0" />
+    <parent
+      link="l_little2" />
+    <child
+      link="l_little3" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little4">
+    <inertial>
+      <origin
+        xyz="0.0169989009346343 0.000775914195903615 -0.000323893688388532"
+        rpy="0 0 0" />
+      <mass
+        value="0.00614303051893755" />
+      <inertia
+        ixx="1.3164910577722E-07"
+        ixy="3.41570314269223E-10"
+        ixz="9.71587597086589E-10"
+        iyy="1.20972202116461E-06"
+        iyz="-4.11546167417621E-10"
+        izz="1.29037776380836E-06" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little4.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little4.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle4"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_little3" />
+    <child
+      link="l_little4" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little5">
+    <inertial>
+      <origin
+        xyz="0.00759999999999983 0 0.00160000000000005"
+        rpy="0 0 0" />
+      <mass
+        value="0.00042980255552665" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-8.83598503928011E-25"
+        ixz="-1.1743264427685E-23"
+        iyy="1.96692153253639E-08"
+        iyz="-1.11397799438311E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little5.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little5.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle5"
+    type="revolute">
+    <origin
+      xyz="0.0339999999999998 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_little4" />
+    <child
+      link="l_little5" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little6">
+    <inertial>
+      <origin
+        xyz="0.00599328393915388 0.000343236205303299 -0.0009663666048777"
+        rpy="0 0 0" />
+      <mass
+        value="0.00380898023532252" />
+      <inertia
+        ixx="8.11078604818145E-08"
+        ixy="-4.98426780550909E-10"
+        ixz="-5.68146177876378E-10"
+        iyy="1.95808517390975E-07"
+        iyz="1.32607604706691E-10"
+        izz="2.45248849839301E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little6.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.792156862745098 0.819607843137255 0.933333333333333 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little6.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle6"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_little5" />
+    <child
+      link="l_little6" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little7">
+    <inertial>
+      <origin
+        xyz="0.00760000000000005 0 0.0016000000000001"
+        rpy="0 0 0" />
+      <mass
+        value="0.00042980255552665" />
+      <inertia
+        ixx="3.30678969741858E-09"
+        ixy="-7.71673542312877E-25"
+        ixz="-1.19002584839488E-23"
+        iyy="1.96692153253639E-08"
+        iyz="-2.74686907759705E-25"
+        izz="1.71736705231727E-08" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little7.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little7.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle7"
+    type="revolute">
+    <origin
+      xyz="0.012 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_little6" />
+    <child
+      link="l_little7" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+  <link
+    name="l_little8">
+    <inertial>
+      <origin
+        xyz="0.011863037868703 2.52726334669662E-05 -0.000408492799228777"
+        rpy="0 0 0" />
+      <mass
+        value="0.0062407970407038" />
+      <inertia
+        ixx="1.33114050707767E-07"
+        ixy="2.55174242369025E-08"
+        ixz="7.74404586075149E-09"
+        iyy="4.05018367341503E-07"
+        iyz="-1.16857211309761E-09"
+        izz="3.89133888533669E-07" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little8.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://LeftArmHandURDFV3/meshes/l_little8.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="l_Jlittle8"
+    type="revolute">
+    <origin
+      xyz="0.0152000000000001 0 0"
+      rpy="0 0 0" />
+    <parent
+      link="l_little7" />
+    <child
+      link="l_little8" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-0.2"
+      upper="1"
+      effort="0"
+      velocity="0" />
+  </joint>
+</robot>

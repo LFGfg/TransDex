@@ -1,0 +1,94 @@
+log_dir: "logs/" 
+ckpt_dir: "ckpts/"
+
+dataset_dir: "../data_record/"
+task_name: "rotate_cup"  # 任务名称
+    
+pointEncoder_pretrain: True
+pointEncoder_pretrain_ckpt: 'pretrain_pointencoder/ckpt.pth'
+forceEncoder_pretrain: False
+obs_t: 3
+
+use_one_diffusion: False
+use_two_diffusion: False
+use_arm_diffusion: False
+use_hand_diffusion: True
+arm_ratio: 0.6  
+hand_ratio: 0.4  
+
+prefix_length: 5  # 前缀长度
+
+use_qua: True  # 是否使用四元数
+no_tactile: False
+tactile_point_num: 50  # 触觉点云采样点数
+hand_object_point_num: 1000  # 手-物体点云采样点数
+overall_point_num: 1000  # 整体点云采样点数
+
+# FusionNet参数
+fusion_net:
+    Encoder_dims: 256
+    Trans_dim: 384
+    target_point_num: 120
+    point_encoder_Depth: 12
+    PointEncoder_Num_heads: 6
+    Group_size: 32
+    Num_group: 64
+    cls_dim: 512
+    state_shape: 22
+    state_mlp_size: [64, 64]
+    state_mlp_activation_fn: nn.ReLU
+    drop_path_rate: 0.1
+    num_self_blocks: 6
+    num_cross_blocks: 6
+    atten_ff_hidden_dim: 512
+    atten_num_heads: 6
+    arm_degree: 6
+    hand_degree: 16
+    time_steps: 3
+    num_diffusion_iters: 5
+
+    diffusion:
+        _target_: diffusers.schedulers.scheduling_ddim.DDIMScheduler
+        pred_time: 8
+        num_train_timesteps: 100
+        pred_type: sample
+        beta_schedule: squaredcos_cap_v2
+
+num_inference_steps: 10
+#训练参数
+test_size: 0.2
+world_size: 4
+num_workers: 4
+num_epochs: 601
+validate_every: 50
+batch_size: 32
+lr: 0.0008
+T_0: 15
+T_mult: 2
+min_lr: 0.000001
+weight_decay: 0.000001
+grad_clip_percentile: 95
+grad_clip_value: 1.0
+
+
+pos_mins: [0.38, 0.14, 0.60]    # x, y, z 最小值
+pos_maxs: [0.72, 0.40, 0.92]  # x, y, z 最大值
+rpy_mins: [-6.28, -1.5708, -6.28]  # roll, pitch, yaw 最小值 
+rpy_maxs: [6.28, 0.0, 6.28]  # roll, pitch, yaw 最大值
+joint_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  # 16个关节最小值
+joint_max: [1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963]  # 16个关节最大值 (π/2)
+
+
+x_min: 0.20
+x_max: 0.9
+y_min: -0.1
+y_max: 0.5
+z_min: -0.63
+z_max: -0.3
+
+x_min_hand: -0.035
+x_max_hand: 0.25
+y_min_hand: -0.075
+y_max_hand: 0.170
+z_min_hand: -0.055
+z_max_hand: 0.25
