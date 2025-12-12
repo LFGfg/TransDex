@@ -2,7 +2,7 @@
 [🥛**Project Page**](https://transdex.github.io/) | [📄**Paper(Arxiv)**](https://arxiv.org/) 
 
 Fengguan Li, Yifan Ma, Wentao Rao, Weiwei Shang, Chen Qian
-
+<img src="policy_ws\image\Method Overview.png" align="middle" width="100%"/> 
 <br/>
 
 We propose **TransDex**,  a 3D visuo-tactile fusion motor policy based on point cloud reconstruction pre-training.
