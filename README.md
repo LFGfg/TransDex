@@ -58,7 +58,9 @@ First enter the pre-training document directory：
 ```bash
 cd /policy_ws/src/VTFusion/src/PretrainPoint
 ```
-The code for the dataset processing and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The sample dataset will be released at [Google Drive](https://drive.google.com/file/d/1r_ZTIlBnV1tvt5HuZ7LX18nZfiD_H1WX/view?usp=sharing) later.
+The code for the dataset processing and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The sample dataset will be released at Google Drive later.
+
+<!-- [Google Drive](https://drive.google.com/file/d/1r_ZTIlBnV1tvt5HuZ7LX18nZfiD_H1WX/view?usp=sharing)-->
 
 😸 We strongly suggest that users generate corresponding point cloud datasets according to **your own dexterous hand systems** and process them in the format provided by the data processing codes. 
 
