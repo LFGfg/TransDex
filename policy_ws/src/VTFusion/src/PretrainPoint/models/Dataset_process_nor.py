@@ -3,7 +3,7 @@
 # 11-19 are noise samples, and 20 are label samples.  
 # 21-29 are noise samples, and 30 are label samples.  
 # 31-39 are noise samples, and 40 are label samples.
-
+# It is recommended to assign different color attributes to the point clouds of the dexterous hand and objects for differentiation.
 import torch
 from torch.utils.data import Dataset, DataLoader
 import os

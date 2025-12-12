@@ -119,3 +119,5 @@ This project utilizes ROS and TwinCat communication for underlying motor control
   url={https://your-domain.com/your-project-page}
 }
 ```
+
+If you have any questions, please contact **lfguan@mail.ustc.edu.cn**.
