@@ -106,8 +106,8 @@ This project utilizes ROS and TwinCat communication for underlying motor control
 
 ---
 
-## 📖 Citation
-😸 If you find our work useful, please consider citing:
+## 📚 Citation
+😄 If you find our work useful, please consider citing:
 ```bibtex
 @article{TransDex2025Li,
   title={TransDex: Pre-training Visuo-Tactile Policy with Point Cloud Reconstruction for Dexterous Manipulation of Transparent Objects},
