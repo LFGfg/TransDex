@@ -3,13 +3,14 @@
 
 Fengguan Li, Yifan Ma, Wentao Rao, Weiwei Shang, Chen Qian
 
----
+<br/>
+
 We propose **TransDex**,  a 3D visuo-tactile fusion motor policy based on point cloud reconstruction pre-training.
 
+---
 
 
-
-## 📌 Installation
+## ⚙️ Installation
 ✅ This project is recommended to run in the following environment:
 - **Linux**: Ubuntu 20.04.
 - **CUDA version**: 12.9.1.
@@ -27,7 +28,7 @@ git clone https://github.com/LFGfg/TransDex.git
 cd TransDex
 ```
 
-### ⚙️ Setup Instructions
+### Setup Instructions
 
 #### 1. Create and activate Conda environment
 ```bash
@@ -57,9 +58,11 @@ First enter the pre-training document directory：
 ```bash
 cd /policy_ws/src/VTFusion/src/PretrainPoint
 ```
-The code for the dataset and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). 
+The code for the dataset and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The sample dataset will be released at [Google Drive](https://drive.google.com/file/d/1r_ZTIlBnV1tvt5HuZ7LX18nZfiD_H1WX/view?usp=sharing) later.
 
-⚠️ We suggest that users generate corresponding point cloud datasets according to **your own dexterous hand systems** and process them in the format provided by the data processing codes. Therefore, before training, please make sure that `dataset.data_dir` in `./cfgs/pretrain_hand_object.yaml` should be changed to the storage location of your own dataset.
+👆 We strongly suggest that users generate corresponding point cloud datasets according to **your own dexterous hand systems** and process them in the format provided by the data processing codes. 
+
+Before training, please make sure that `dataset.data_dir` in `./cfgs/pretrain_hand_object.yaml` should be changed to the storage location of your own dataset.
 ```bash
 CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain_hand_object.yaml
 ```
@@ -67,7 +70,7 @@ CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain_hand_object.yaml
 The trained weight files can be found in `./experiments/pretrain_hand_object/`.
 
 ### 2. Policy
-#### Hardware Requirements
+#### Hardware Setup
 The real robotic system consists of a 16-DOF dexterous hand and a 7-DOF humanoid arm. The robot used in this project can also be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The dexterous hand is equipped with **Paxini array tactile sensors**. Additionally, the system requires two Intel RealSense D435i depth cameras positioned at the wrists of the robotic arms and around the workbench respectively.
 
 #### Policy Training
@@ -75,9 +78,9 @@ Enter the document directory：
 ```bash
 cd /policy_ws/src/VTFusion/src/
 ```
-The code for the dataset and model of the policy can be found in `./VTFusion_dataset.py` and `./FusionNetwork.py`.
+The code for the dataset processing and model of the policy can be found in `./VTFusion_dataset.py` and `./FusionNetwork.py`. Users can collect manipulation dataset through **your own robotic system**.
 
-⚠️ Before training the policy, please ensure:
+👆 Before training the policy, please ensure:
 1. The pre-trained encoder weight file is located under `pretrain_pointencoder/ckpt.pth`.
 2. Manipulation dataset is placed under `../data_record/`, and edit the `task_name` in the config file `config/config.yaml`.
 3. Put the URDF file of the robot in `/policy_ws/src/LeftArmHandURDFV3`.
@@ -104,6 +107,7 @@ This project utilizes ROS and TwinCat communication for underlying motor control
 ---
 
 ## 📖 Citation
+If you find our work useful, please consider citing:
 ```bibtex
 @article{TransDex2025Li,
   title={TransDex: Pre-training Visuo-Tactile Policy with Point Cloud Reconstruction for Dexterous Manipulation of Transparent Objects},

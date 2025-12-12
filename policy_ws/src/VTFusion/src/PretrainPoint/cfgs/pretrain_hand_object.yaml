@@ -1,32 +1,30 @@
-# 优化器配置（修正YAML格式，去掉JSON风格）
+# Optimizer configuration (Fix YAML format, remove JSON style)
 optimizer:
   type: AdamW
   kwargs:
     lr: 0.0005
     weight_decay: 0.05
 
-# 调度器配置
+# Scheduler configuration
 scheduler:
-  type: CosLR  # 需确保代码中有CosLR的实现，否则替换为PyTorch原生的CosineAnnealingLR
+  type: CosLR  
   kwargs:
     epochs: 300
     initial_epochs: 5
 
-# 数据集配置（核心修正：缩进+语法）
+# Dataset configuration
 dataset:
-  data_dir: /home/lfg/data1/touch_dataset_3
+  data_dir: /data1/touch_dataset
   train_ratio: 0.8
-  npoints: 1024  # 换行+正确缩进，确保train是dataset的子节点
-  # 训练集配置（匹配代码：config.dataset.train.others.bs）
+  npoints: 1024  
   train:
     others:
-      bs: 32  # 单卡默认值，代码会按total_bs自动覆盖
-  # 验证集配置（匹配代码：config.dataset.val.others.bs）
+      bs: 32  
   val:
     others:
       bs: 32
 
-# 模型配置（仅修正格式，参数保留你的设置）
+# Model configuration
 model:
   NAME: PretrainPoint
   m: 0.999
@@ -57,7 +55,7 @@ model:
     num_group: 64
     encoder_dims: 256
 
-# 全局训练参数
+# Global training parameters
 total_bs: 16  
 step_per_update: 1
 grad_norm_clip: 10

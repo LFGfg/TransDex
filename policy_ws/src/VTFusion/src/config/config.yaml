@@ -2,7 +2,7 @@ log_dir: "logs/"
 ckpt_dir: "ckpts/"
 
 dataset_dir: "../data_record/"
-task_name: "rotate_cup"  # 任务名称
+task_name: "rotate_cup"  # Task name
     
 pointEncoder_pretrain: True
 pointEncoder_pretrain_ckpt: 'pretrain_pointencoder/ckpt.pth'
@@ -16,15 +16,15 @@ use_hand_diffusion: True
 arm_ratio: 0.6  
 hand_ratio: 0.4  
 
-prefix_length: 5  # 前缀长度
+prefix_length: 5  # Prefix length
 
-use_qua: True  # 是否使用四元数
+use_qua: True  # Whether to use quaternions
 no_tactile: False
-tactile_point_num: 50  # 触觉点云采样点数
-hand_object_point_num: 1000  # 手-物体点云采样点数
-overall_point_num: 1000  # 整体点云采样点数
+tactile_point_num: 50  # Number of tactile point cloud sampling points
+hand_object_point_num: 1000  # Number of hand-object point cloud sampling points
+overall_point_num: 1000  # Number of overall point cloud sampling points
 
-# FusionNet参数
+# FusionNet parameters
 fusion_net:
     Encoder_dims: 256
     Trans_dim: 384
@@ -55,7 +55,7 @@ fusion_net:
         beta_schedule: squaredcos_cap_v2
 
 num_inference_steps: 10
-#训练参数
+# Training parameters
 test_size: 0.2
 world_size: 4
 num_workers: 4
@@ -71,14 +71,14 @@ grad_clip_percentile: 95
 grad_clip_value: 1.0
 
 
-pos_mins: [0.38, 0.14, 0.60]    # x, y, z 最小值
-pos_maxs: [0.72, 0.40, 0.92]  # x, y, z 最大值
-rpy_mins: [-6.28, -1.5708, -6.28]  # roll, pitch, yaw 最小值 
-rpy_maxs: [6.28, 0.0, 6.28]  # roll, pitch, yaw 最大值
-joint_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  # 16个关节最小值
-joint_max: [1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963]  # 16个关节最大值 (π/2)
+pos_mins: [0.38, 0.14, 0.60]    # Minimum values for x, y, z of action space
+pos_maxs: [0.72, 0.40, 0.92]  # Maximum values for x, y, z of action space
+rpy_mins: [-6.28, -1.5708, -6.28]  # Minimum values for roll, pitch, yaw of action space
+rpy_maxs: [6.28, 0.0, 6.28]  # Maximum values for roll, pitch, yaw of action space
+joint_min: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]  # Minimum values for 16 hand joints
+joint_max: [1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963, 1.5707963]  # Maximum values for 16 hand joints (π/2)
 
-
+# Workspace boundaries in the robot base coordinate system
 x_min: 0.20
 x_max: 0.9
 y_min: -0.1
@@ -86,6 +86,7 @@ y_max: 0.5
 z_min: -0.63
 z_max: -0.3
 
+# Hand-object boundaries in the hand base coordinate system
 x_min_hand: -0.035
 x_max_hand: 0.25
 y_min_hand: -0.075
