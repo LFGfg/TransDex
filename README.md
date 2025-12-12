@@ -26,7 +26,6 @@ We propose **TransDex**,  a 3D visuo-tactile fusion motor policy based on point 
 
 ### Clone Repository
 
-#### Clone the repository:
 ```bash
 git clone https://github.com/LFGfg/TransDex.git
 cd TransDex
@@ -87,10 +86,10 @@ cd /policy_ws/src/VTFusion/src/
 The code for the dataset processing and model of the policy can be found in `./VTFusion_dataset.py` and `./FusionNetwork.py`. Users can collect manipulation dataset through **your own robotic system**.
 
 👉🏻 Before training the policy, please ensure:
-1. The pre-trained encoder weight file is located under `pretrain_pointencoder/ckpt.pth`.
-2. Manipulation dataset is placed under `../data_record/`, and edit the `task_name` in the config file `config/config.yaml`.
-3. Put the URDF file of the robot in `/policy_ws/src/LeftArmHandURDFV3`.
-4. Adjust parameters such as `pos_mins/maxs`, `rpy_mins/maxs`, `joint_mins/maxs` in the config file according to robotic system and task. Relevant instructions are already commented in the sample config file `config/config.yaml`.
+- The pre-trained encoder weight file is located under `pretrain_pointencoder/ckpt.pth`.
+- Manipulation dataset is placed under `../data_record/`, and edit the `task_name` in the config file `config/config.yaml`.
+- Put the URDF file of the robot in `/policy_ws/src/LeftArmHandURDFV3`.
+- Adjust parameters such as `pos_mins/maxs`, `rpy_mins/maxs`, `joint_mins/maxs` in the config file according to robotic system and task. Relevant instructions are already commented in the sample config file `config/config.yaml`.
 
 Use the following script for training：
 ```bash
