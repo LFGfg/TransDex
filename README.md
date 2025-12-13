@@ -35,7 +35,7 @@ cd TransDex
 
 #### 1. Create and activate Conda environment
 ```bash
-conda create -n vtfusion python=3.9 -y && conda activate VTFusion
+conda create -n VTFusion python=3.9 -y && conda activate VTFusion
 ```
 
 #### 2. Install dependencies
@@ -61,7 +61,7 @@ First enter the pre-training document directory：
 ```bash
 cd /policy_ws/src/VTFusion/src/PretrainPoint
 ```
-The code for the dataset processing and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The sample dataset will be released at Google Drive later.
+The code for the dataset processing and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The sample dataset will be released at [Google Drive](https://drive.google.com/file/d/1r_ZTIlBnV1tvt5HuZ7LX18nZfiD_H1WX/view?usp=sharing) later.
 
 <!-- [Google Drive](https://drive.google.com/file/d/1r_ZTIlBnV1tvt5HuZ7LX18nZfiD_H1WX/view?usp=sharing)-->
 
