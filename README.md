@@ -1,7 +1,8 @@
 # TransDex: Pre-training Visuo-Tactile Policy with Point Cloud Reconstruction for Dexterous Manipulation of Transparent Objects
-<div align="center">
-[🌐**Project Page**](https://transdex.github.io/) | [📄**Paper(Arxiv)**](https://arxiv.org/) | [🎬 **Video**](https://drive.google.com/file/d/1gAhT-UEArOlBsy8-IXJ8_nJgBeumdEZM/view?usp=sharing)
+<div align="center" style="white-space: nowrap; margin: 1em 0;">
+[🌐**Project Page**](https://transdex.github.io/) | [📄**Paper(Arxiv)**](https://arxiv.org/) | [🎬**Video**](https://drive.google.com/file/d/1gAhT-UEArOlBsy8-IXJ8_nJgBeumdEZM/view?usp=sharing)
 </div>
+
 <div align="center">
 Fengguan Li, Yifan Ma, Wentao Rao, Weiwei Shang, Chen Qian
 </div>
