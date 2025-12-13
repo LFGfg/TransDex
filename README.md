@@ -97,17 +97,17 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python training.py --config config/config.yaml
 ```
 The trained weight files can be found in `./ckpts/`.
 
-⚡ **Note**: Code files such as `./pin_forward.py`,  `./tactile_sensor_calculator.py` are designed for the robotic systems used in the project.
+⚡ **Note**: Certain code files, such as `./pin_forward.py`, `./VTFusion_dataset.py`, contain functions specifically designed for the robotic systems used in the project. When using these modules, you need to modify and adapt the specific functions within it.
 
 #### Deploy
 This project utilizes ROS and TwinCat communication for underlying motor control. Users can evaluate through your own robotic systems and corresponding trained networks.
 
 #### 💡 Deployment Tips
+- Ensure all hardware devices is supplied with stable power and properly connected.
 - Dual RealSense cameras require hand-eye calibration and time synchronization.
 - Point cloud fusion necessitates coordinate transformation and ICP registration.
 - Calibrate robotic arm/dexterous hand joint zero position and set limits.
-- Model inference requires the use of a graphics card to enhance control frequency.
-- Ensure all hardware devices is supplied with stable power and properly connected.
+- Visualize the point cloud to ensure that the position of tactile points is calculated correctly.
 
 ---
 
