@@ -97,9 +97,9 @@ CUDA_VISIBLE_DEVICES=0,1,2,3 python training.py --config config/config.yaml
 ```
 The trained weight files can be found in `./ckpts/`.
 
-⚡ **Note**: Certain code files, such as `./pin_forward.py`, `./VTFusion_dataset.py`, contain functions specifically designed for the robotic system used in the project. When using these modules, you need to modify and adapt the specific functions within it.
+⚡ **Note**: Certain code files, such as `./pin_forward.py`, `./VTFusion_dataset.py`, contain functions specifically designed for the robotic system used in the project. When using these modules, you need to modify and adapt the specific functions within them.
 
-#### Deploy
+#### Real-World Deployment
 This project utilizes ROS and TwinCat communication for underlying motor control. Users can evaluate through your own robotic systems and corresponding trained networks.
 
 #### 💡 Deployment Tips
