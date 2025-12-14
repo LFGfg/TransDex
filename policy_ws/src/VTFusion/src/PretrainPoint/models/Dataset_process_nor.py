@@ -1,8 +1,8 @@
 # The datasets of this paper are in the following format: 
-# 1-9 is a noise sample, and 10 is a label sample. 
-# 11-19 are noise samples, and 20 are label samples.  
-# 21-29 are noise samples, and 30 are label samples.  
-# 31-39 are noise samples, and 40 are label samples.
+# 2-10 is a noise sample, and 1 is a label sample. 
+# 12-20 are noise samples, and 11 are label samples.  
+# 22-30 are noise samples, and 21 are label samples.  
+# 32-40 are noise samples, and 31 are label samples.
 # It is recommended to assign different color attributes to the point clouds of the dexterous hand and objects for differentiation.
 import torch
 from torch.utils.data import Dataset, DataLoader
