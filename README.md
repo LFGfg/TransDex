@@ -74,6 +74,11 @@ CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain_hand_object.yaml
 
 The trained weight files can be found in `./experiments/pretrain_hand_object/`.
 
+To perform a simple evaluation across the entire dataset, you can run:
+```bash
+python ./models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-best.pth  --data_dir /policy_ws/src/VTFusion/hand_object_data/touch_dataset
+```
+
 ### 2. Policy
 #### Hardware Setup
 The real robotic system consists of a 16-DOF dexterous hand and a 7-DOF humanoid arm. The robot used in this project can also be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The dexterous hand is equipped with **Paxini array tactile sensors**. Additionally, the system requires two Intel RealSense D435i depth cameras positioned at the wrists of the robotic arms and around the workbench respectively.
@@ -86,7 +91,7 @@ cd /policy_ws/src/VTFusion/src/
 The code for the dataset processing and model of the policy can be found in `./VTFusion_dataset.py` and `./FusionNetwork.py`. Users can collect manipulation dataset through **your own robotic system**.
 
 👉🏻 Before training the policy, please ensure:
-- The pre-trained encoder weight file is located under `pretrain_pointencoder/ckpt.pth`.
+- The pre-trained encoder weight file is copied to `./pretrain_pointencoder/ckpt.pth`.
 - Manipulation dataset is placed under `../data_record/task_name/`, and edit the `task_name` in the config file `config/config.yaml`.
 - Put the URDF file of the robot in `/policy_ws/src/LeftArmHandURDFV3`.
 - Adjust parameters such as `pos_mins/maxs`, `rpy_mins/maxs`, `joint_mins/maxs` in the config file according to robotic system and task. Relevant instructions are already commented in the sample config file `config/config.yaml`.
