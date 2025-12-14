@@ -76,7 +76,7 @@ The trained weight files can be found in `./experiments/pretrain_hand_object/`.
 
 To perform a simple evaluation across the entire dataset, you can run:
 ```bash
-python ./models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-best.pth  --data_dir /policy_ws/src/VTFusion/hand_object_data/touch_dataset
+python ./models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-last.pth  --data_dir /policy_ws/src/VTFusion/hand_object_data/touch_dataset
 ```
 
 ### 2. Policy

@@ -9,17 +9,17 @@ from utils.logger import *
 import random
 import os
 import sys
-# 1. Get the project's top-level directory (directory containing extensions, i.e., src/)
-# Path hierarchy: src/ → contains extensions/ and PretrainPoint/
+# 1. 获取项目顶级目录（extensions所在的目录，即src/）
+# 路径层级：src/ → 包含 extensions/ 和 PretrainPoint/
 TOP_DIR = os.path.abspath(os.path.join(
-    os.path.dirname(__file__),  # Current file path: PretrainPoint/models/
-    "../.."  # Go up two levels: PretrainPoint/models/ → PretrainPoint/ → src/
+    os.path.dirname(__file__),  # 当前文件路径：PretrainPoint/models/
+    "../.."  # 跳两级：PretrainPoint/models/ → PretrainPoint/ → src/
 ))
-# 2. Add the top-level directory to Python's search path (ensure extensions can be found)
+# 2. 将顶级目录加入Python搜索路径（确保能找到extensions）
 if TOP_DIR not in sys.path:
     sys.path.append(TOP_DIR)
 
-# 3. Absolute import of pointops (Python can now find src/extensions)
+# 3. 绝对导入pointops（此时Python能找到src/extensions）
 from extensions.pointops.functions import pointops
 from .transformer import TransformerEncoder, TransformerDecoder, Group, DummyGroup, Encoder
 from .detr.build import build_encoder as build_encoder_3detr, build_preencoder as build_preencoder_3detr
@@ -133,7 +133,7 @@ class PointTransformer(nn.Module):
 
 
     def forward(self, pts, return_feature=False):
-        # divide the point cloud in the same form. This is important
+        # divide the point clo  ud in the same form. This is important
         neighborhood, center = self.group_divider(pts)
         # encoder the input cloud blocks
         group_input_tokens = self.encoder(neighborhood)  #  B G N
@@ -155,7 +155,7 @@ class PointTransformer(nn.Module):
         return ret
 
 
-# Custom dataset class
+# 自定义数据集类
 class PCDDataset(Dataset):
     def __init__(self, data_dir):
         self.data_dir = data_dir
@@ -178,7 +178,7 @@ class PCDDataset(Dataset):
 
     def __getitem__(self, idx):
         data_file = self.data_files[idx]
-        # Extract object_name, scale and index
+        # 提取 object_name、scale 和 index
         parts = data_file.split('_')
         object_name = "_".join(parts[:-2])
         scale = parts[-2].replace('scale', '')
@@ -194,19 +194,19 @@ class PCDDataset(Dataset):
         else:
             label_index = 31
 
-        # Filter label files matching object_name, scale and label_index
+        # 筛选出符合 object_name、scale 和 label_index 的标签文件
         label_file =[f for f in self.label_files if object_name in f and f'scale{scale}' in f and f'_{label_index}.pcd' in f][0]
 
         data_pcd = o3d.io.read_point_cloud(data_file)
         label_pcd = o3d.io.read_point_cloud(label_file)
 
-        # Extract point coordinates and color information
+        # 提取点坐标和颜色信息
         data_points = torch.tensor(data_pcd.points, dtype=torch.float32)
         data_colors = torch.tensor(data_pcd.colors, dtype=torch.float32)
         label_points = torch.tensor(label_pcd.points, dtype=torch.float32)
         label_colors = torch.tensor(label_pcd.colors, dtype=torch.float32)
 
-        # Merge point coordinates and color information
+        # 合并点坐标和颜色信息
         data = torch.cat((data_points, data_colors), dim=1)
         label = torch.cat((label_points, label_colors), dim=1)
 
@@ -299,6 +299,10 @@ class MaskPointTransformer(nn.Module):
         self.apply(self._init_weights)
         self.access_count = 0
 
+
+
+
+
     def _init_weights(self, m):
         if isinstance(m, nn.Linear):
             trunc_normal_(m.weight, std=.02)
@@ -352,7 +356,7 @@ class MaskPointTransformer(nn.Module):
         group_input_tokens = self.reduce_dim(group_input_tokens)
         return group_input_tokens
 
-    def forward(self, neighborhood, center, points_orig, labels_points,only_cls_tokens = False, noaug = False):
+    def forward(self, neighborhood, center, points_orig, lables_points,only_cls_tokens = False, noaug = False,return_cd=False):
         if self.enc_arch == '3detr':
             pre_enc_xyz, group_input_tokens, pre_enc_inds = self.preencoder(center)
             group_input_tokens = group_input_tokens.permute(0, 2, 1)
@@ -397,12 +401,14 @@ class MaskPointTransformer(nn.Module):
             if only_cls_tokens:
                 return self.cls_head(x[:, 0])
 
-        query_points, query_labels = self._generate_query_xyz(points_orig, center,labels_points, mode=self.dec_query_mode)
+        query_points, query_labels = self._generate_query_xyz(points_orig, center,lables_points, mode=self.dec_query_mode)
 
         query_pos = self.pos_embed(query_points)
         query_tensor = torch.zeros_like(query_pos)
-        dec_outputs = self.decoder(query_tensor, query_pos, x, pos) #q is query_tensor+query_pos, k is x+pos, v is x
+        dec_outputs = self.decoder(query_tensor, query_pos, x, pos) #q是query_tensor+query_pos，k是x+pos,v是x
         query_preds = self.bin_cls_head(dec_outputs).transpose(1, 2)
+        if return_cd:
+            return self.cls_head(x[:, 0]), query_preds, query_labels,query_points
         return self.cls_head(x[:, 0]), query_preds, query_labels
 
 
@@ -474,50 +480,52 @@ class PretrainPoint(nn.Module):
             self.loss_ce = nn.CrossEntropyLoss(ignore_index=-1)
             self.loss_ce_batch = nn.CrossEntropyLoss(reduction='none', ignore_index=-1)
 
-    def forward_eval(self, pts,labels_points):
+    def forward_eval(self, pts,lables_points):
         with torch.no_grad():
             neighborhood, center = self.group_divider(pts)
-            cls_feature, query_preds, query_labels = self.transformer_q(neighborhood, center, pts, labels_points, only_cls_tokens = False, noaug = False)
-            # Calculate accuracy
+            cls_feature, query_preds, query_labels = self.transformer_q(neighborhood, center, pts, lables_points, only_cls_tokens = False, noaug = False)
+            # 计算准确率
             query_preds = query_preds.transpose(1, 2).contiguous().to(pts.device)
             query_labels=query_labels.to(pts.device)
             # if self.use_sigmoid:
-            #     # Apply sigmoid to predictions and determine classes based on threshold
+            #     # 对预测结果进行 sigmoid 操作并根据阈值判断类别
             #     preds = torch.sigmoid(query_preds).squeeze().argmax(dim=-1)
             # else:
-            #     # Directly get the index of maximum probability as predicted class
+            #     # 直接获取最大概率的索引作为预测类别
             #     preds = query_preds.squeeze().argmax(dim=-1)
 
-            # # Convert samples with label -1 to 1
+            # # 将标签为 -1 的样本转换为 1
             query_labels[query_labels == -1] = 1
 
             # accuracy = Accuracy(task='multiclass', num_classes=2).to(pts.device)
             # acc = accuracy(preds, query_labels)
-            # Get predicted classes
+            # 获取预测的类别
             predicted_classes = torch.argmax(query_preds, dim=-1)
 
-            # Calculate number of correct predictions
+            # 计算预测正确的样本数量
             correct_predictions = (predicted_classes == query_labels).sum().item()
 
-            # Calculate precision and recall (assuming class 1 is positive)
+             # 计算精确率和召回率（假设类别1为正例）
             true_positives = ((predicted_classes == 1) & (query_labels == 1)).sum().float()
             false_positives = ((predicted_classes == 1) & (query_labels == 0)).sum().float()
             false_negatives = ((predicted_classes == 0) & (query_labels == 1)).sum().float()
             
-            # Avoid division by zero
+            # 避免除零错误
             precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
             recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
 
-            # Calculate accuracy
+        
+
+            # 计算准确率
             total_samples = query_labels.numel()
             acc = correct_predictions / total_samples if total_samples > 0 else 0
             acc=torch.tensor(acc).cuda()
             nonzero_count = torch.count_nonzero(predicted_classes)
 
-            # Calculate total number of elements in tensor
+            # 计算张量的总元素数
             total_count = predicted_classes.numel()
 
-            # Calculate number of elements with value 0
+            # 计算元素为 0 的个数
             zero_count = total_count - nonzero_count
             print('0 of predicted_classes:',zero_count)
             return cls_feature , acc, precision, recall
@@ -548,20 +556,20 @@ class PretrainPoint(nn.Module):
             
         return loss
 
-    def forward(self, pts,labels_points, noaug = False, return_acc_=False,**kwargs):
+    def forward(self, pts,lables_points, noaug = False, return_acc_=False,**kwargs):
 
         if noaug:
-            return self.forward_eval(pts,labels_points)
+            return self.forward_eval(pts,lables_points)
         else:
             self._momentum_update_key_encoder()
 
             neighborhood, center = self.group_divider(pts)
-            q_cls_feature, query_preds, query_labels = self.transformer_q(neighborhood, center, pts,labels_points)
+            q_cls_feature, query_preds, query_labels = self.transformer_q(neighborhood, center, pts,lables_points)
             q_cls_feature = F.normalize(q_cls_feature, dim=1)
 
             if self.use_moco_loss:
                 with torch.no_grad():
-                    k_cls_feature = self.transformer_k(neighborhood, center, pts,labels_points, only_cls_tokens = True)
+                    k_cls_feature = self.transformer_k(neighborhood, center, pts,lables_points, only_cls_tokens = True)
                     k_cls_feature = F.normalize(k_cls_feature, dim=1)
                 l_pos = torch.einsum('nc, nc->n', [q_cls_feature, k_cls_feature]).unsqueeze(-1)
                 l_neg = torch.einsum('nc, ck->nk', [q_cls_feature, self.queue.clone().detach()])
