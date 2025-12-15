@@ -63,11 +63,11 @@ cd /policy_ws/src/VTFusion/src/PretrainPoint
 ```
 The code for the dataset processing and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The example dataset will be released at Google Drive later.
 
-<!-- [Google Drive](https://drive.google.com/file/d/1Fuu420y7HN_A_iQob36woCfdPVT0Nt-T/view?usp=sharing)-->
+<!-- [Google Drive](https://drive.google.com/file/d/14cCS9UirJniddevmd9mf3cNz2kF2474n/view?usp=drive_link)-->
 
 😸 We strongly suggest that users generate corresponding point cloud datasets according to **your own dexterous hand systems** and process them in the format provided by the data processing codes. 
 
-👉🏻 Before training, please place the hand-object dataset in `/policy_ws/src/VTFusion/hand_object_data/`, or make sure that `dataset.data_dir` in `./cfgs/pretrain_hand_object.yaml` should be changed to the storage location of your own dataset.
+👉🏻 Before training, please place the hand-object dataset in `/policy_ws/src/VTFusion/hand_object_data/hand_object_dataset/`, or make sure that `dataset.data_dir` in `./cfgs/pretrain_hand_object.yaml` should be changed to the storage location of your own dataset.
 ```bash
 CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain_hand_object.yaml
 ```
@@ -77,7 +77,7 @@ The trained weight files can be found in `./experiments/pretrain_hand_object/`.
 To perform a simple evaluation across the entire dataset, you can run:
 ```bash
 export PYTHONPATH="/policy_ws/src/VTFusion/src:$PYTHONPATH"
-python models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-last.pth  --data_dir /policy_ws/src/VTFusion/hand_object_data/touch_dataset
+python models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-last.pth  --data_dir /policy_ws/src/VTFusion/hand_object_data/hand_object_dataset
 ```
 
 ### 2. Policy

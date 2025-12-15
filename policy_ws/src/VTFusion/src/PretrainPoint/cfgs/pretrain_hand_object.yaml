@@ -14,7 +14,7 @@ scheduler:
 
 # Dataset configuration
 dataset:
-  data_dir: /policy_ws/src/VTFusion/hand_object_data/touch_dataset
+  data_dir: /policy_ws/src/VTFusion/hand_object_data/hand_object_dataset
   train_ratio: 0.8
   npoints: 1024  
   train:
