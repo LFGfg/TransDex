@@ -155,16 +155,6 @@ def farthest_point_sample(data, npoints):
     
     return data[centroids].numpy()
 
-def split_dataset(dataset, train_ratio=0.8, seed=42):
-    """Dataset splitting with fixed seed, returns (train_dataset, test_dataset)"""
-    train_size = int(train_ratio * len(dataset))
-    val_size = len(dataset) - train_size
-    # Fix random seed to ensure unique split results
-    generator = torch.Generator().manual_seed(seed)
-    train_dataset, test_dataset = random_split(
-        dataset, [train_size, val_size], generator=generator
-    )
-    return train_dataset, test_dataset
 
 # -------------------------- Test Set CD Calculation Main Function --------------------------
 def compute_cd_on_testset(args, config, logger, test_dataset):
@@ -260,8 +250,7 @@ def run_net(args, config, train_writer=None, val_writer=None):
    
     train_size = int(config.dataset.train_ratio * len(dataset))
     val_size = len(dataset) - train_size
-    train_dataset, test_dataset = random_split(dataset, [train_size, val_size]) #Or use: split_dataset(dataset,train_ratio=config.dataset.train_ratio,seed=42)
-
+    train_dataset, test_dataset = random_split(dataset, [train_size, val_size]) 
     train_sampler = None 
     train_dataloader = DataLoader(train_dataset, batch_size=16, shuffle=True)
     test_dataloader = DataLoader(test_dataset, batch_size=16, shuffle=False)
