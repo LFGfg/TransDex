@@ -16,6 +16,15 @@ sys.path.append("..")
 from models.Dataset_process_nor import PCDDataset
 from typing import Any, BinaryIO, List, Optional, Tuple, Union
 from types import FunctionType
+import os
+import open3d as o3d
+from torchmetrics import Accuracy
+from timm.models.layers import trunc_normal_
+from easydict import EasyDict as edict
+import random
+from torch.utils.data import Dataset
+import copy
+import math
 
 def _log_api_usage_once(obj: Any) -> None:
 
@@ -91,6 +100,150 @@ class Acc_Metric:
         _dict['acc'] = self.acc
         return _dict
 
+# -------------------------- CD Calculation Core Function --------------------------
+def compute_chamfer_distance(pred_pc, labels_pc):
+    """Calculate the Chamfer Distance between two point clouds"""
+    # Convert to Open3D point cloud object
+    if not isinstance(pred_pc, o3d.geometry.PointCloud):
+        pred_pc = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(pred_pc))
+    if not isinstance(labels_pc, o3d.geometry.PointCloud):
+        labels_pc = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(labels_pc))
+    
+    # Build KDTree
+    labels_tree = o3d.geometry.KDTreeFlann(labels_pc)
+    pred_tree = o3d.geometry.KDTreeFlann(pred_pc)
+    
+    pred_points = np.asarray(pred_pc.points)
+    labels_points = np.asarray(labels_pc.points)
+    
+    # Empty point cloud protection
+    if len(pred_points) == 0 or len(labels_points) == 0:
+        return float('inf')
+    
+    # Distance from prediction to label
+    pred_to_labels = 0.0
+    for point in pred_points:
+        [k, idx, _] = labels_tree.search_knn_vector_3d(point, 1)
+        pred_to_labels += np.sum((point - labels_points[idx[0]]) ** 2)
+    pred_to_labels /= len(pred_points)
+    
+    # Distance from label to prediction
+    labels_to_pred = 0.0
+    for point in labels_points:
+        [k, idx, _] = pred_tree.search_knn_vector_3d(point, 1)
+        labels_to_pred += np.sum((point - pred_points[idx[0]]) ** 2)
+    labels_to_pred /= len(labels_points)
+    
+    return pred_to_labels + labels_to_pred
+
+def farthest_point_sample(data, npoints):
+    """Farthest Point Sampling (FPS), adapted for torch tensor"""
+    if isinstance(data, np.ndarray):
+        data = torch.tensor(data, dtype=torch.float32)
+    N, D = data.shape
+    xyz = data[:, :3]
+    centroids = torch.zeros(npoints, dtype=torch.long)
+    distance = torch.ones(N) * 1e10
+    farthest = torch.randint(0, N, (1,)).item()
+    
+    for i in range(npoints):
+        centroids[i] = farthest
+        centroid = xyz[farthest:farthest+1]
+        dist = torch.sum((xyz - centroid) ** 2, dim=-1)
+        distance = torch.min(distance, dist)
+        farthest = torch.argmax(distance).item()
+    
+    return data[centroids].numpy()
+
+def split_dataset(dataset, train_ratio=0.8, seed=42):
+    """Dataset splitting with fixed seed, returns (train_dataset, test_dataset)"""
+    train_size = int(train_ratio * len(dataset))
+    val_size = len(dataset) - train_size
+    # Fix random seed to ensure unique split results
+    generator = torch.Generator().manual_seed(seed)
+    train_dataset, test_dataset = random_split(
+        dataset, [train_size, val_size], generator=generator
+    )
+    return train_dataset, test_dataset
+
+# -------------------------- New: Test Set CD Calculation Main Function --------------------------
+def compute_cd_on_testset(args, config, logger, test_dataset):
+    """After training, load the best model and calculate CD values on the test set (20% validation set)"""
+    # 1. Build dataset (consistent split with training)
+    test_dataloader = DataLoader(test_dataset, batch_size=1, shuffle=False)  # batch_size=1 to avoid inconsistent point cloud lengths
+    config.model.transformer_config.mask_ratio=0.7
+    # 2. Build model and load the best weights
+    base_model = builder.model_builder(config.model)  # Corresponding to your MaskPoint model
+    if args.use_gpu:
+        base_model = base_model.cuda()
+    base_model.transformer_q.mask_ratio = 0.7
+    # Load the last model weights
+    last_ckpt_path = os.path.join(args.experiment_path, 'ckpt-last.pth')
+    if os.path.exists(last_ckpt_path):
+        ckpt = torch.load(last_ckpt_path, map_location='cpu')
+        # Handle the module. prefix from distributed training
+        state_dict = ckpt['base_model']
+        state_dict = {k.replace('module.', ''): v for k, v in state_dict.items()}
+        base_model.load_state_dict(state_dict, strict=False)
+        print_log(f"Loaded last model from {last_ckpt_path}", logger=logger)
+    else:
+        print_log(f"Last checkpoint not found at {last_ckpt_path}", logger=logger)
+        return
+    
+    # 3. Set model to evaluation mode
+    base_model.eval()
+    all_cd_values = []
+    
+    # 4. Iterate over test set to calculate CD
+    with torch.no_grad():
+        for idx, (data, label) in enumerate(test_dataloader):
+            # Data preprocessing (consistent with training)
+            data = data.cuda()
+            label = label.cuda()
+            npoints = config.dataset.npoints
+            data = misc.fps(data, npoints)  # FPS sampling during training
+            
+            # Model forward inference (get predicted point cloud)
+            # Adapt to the forward output of MaskPoint model: query_points are the core predicted points
+            neighborhood, center = base_model.group_divider(data)
+            q_cls_feature, query_preds, query_labels, query_points = base_model.transformer_q(
+                neighborhood, center, data, label,return_cd=True
+            )
+            # Threshold filtering of valid predicted points
+            query_preds = torch.sigmoid(query_preds.transpose(1, 2))
+            threshold = 0.45  # Adjustable threshold
+            pos_indices = (query_preds[..., 1] > threshold).nonzero(as_tuple=True)
+            selected_points = query_points[pos_indices].cpu().numpy()
+            
+            # FPS sampling to fixed number of points (avoid excessive number of point cloud points)
+            if len(selected_points) > 1000:
+                selected_points = farthest_point_sample(selected_points, 1000)
+            elif len(selected_points) == 0:
+                print_log(f"Sample {idx+1}: No valid predicted points", logger=logger)
+                all_cd_values.append(float('inf'))
+                continue
+            
+            # Label point cloud processing
+            label_np = label[0].cpu().numpy()  # batch_size=1, take the first sample
+            
+            # Calculate CD
+            cd = compute_chamfer_distance(selected_points, label_np)
+            all_cd_values.append(cd)
+            print_log(f"Test Sample {idx+1}/{len(test_dataloader)} CD: {cd:.6f}", logger=logger)
+    
+    # 5. Statistical results
+    if all_cd_values:
+        valid_cd = [v for v in all_cd_values if not np.isinf(v)]
+        if valid_cd:
+            avg_cd = np.mean(valid_cd)
+
+            print_log(f"\n===== CD Statistics =====", logger=logger)
+            print_log(f"Average CD: {avg_cd:.6f}", logger=logger)
+
+        else:
+            print_log("No valid CD values (all predicted point clouds are empty)", logger=logger)
+    else:
+        print_log("No CD values computed", logger=logger)
 
 def evaluate_svm(train_features, train_labels, test_features, test_labels):
     clf = LinearSVC()
@@ -101,17 +254,17 @@ def evaluate_svm(train_features, train_labels, test_features, test_labels):
 def run_net(args, config, train_writer=None, val_writer=None):
     logger = get_logger(args.log_name)
     # build dataset
-    # 构建数据集
+    
     dataset = PCDDataset(config.dataset['data_dir'])
 
-    # 划分数据集
-    train_size = int(0.8 * len(dataset))
+   
+    train_size = int(config.dataset.train_ratio * len(dataset))
     val_size = len(dataset) - train_size
-    train_dataset, val_dataset = random_split(dataset, [train_size, val_size])
+    train_dataset, test_dataset = random_split(dataset, [train_size, val_size]) #Or use: split_dataset(dataset,train_ratio=config.dataset.train_ratio,seed=42)
 
-    train_sampler = None  # 这里简单假设不使用分布式采样器
+    train_sampler = None 
     train_dataloader = DataLoader(train_dataset, batch_size=16, shuffle=True)
-    test_dataloader = DataLoader(val_dataset, batch_size=16, shuffle=False)
+    test_dataloader = DataLoader(test_dataset, batch_size=16, shuffle=False)
 
     extra_train_dataloader=None
     # build model
@@ -280,7 +433,12 @@ def run_net(args, config, train_writer=None, val_writer=None):
                 builder.save_checkpoint(base_model, optimizer, epoch, metrics, best_metrics, 'ckpt-best', args, logger = logger)
         builder.save_checkpoint(base_model, optimizer, epoch, metrics, best_metrics, 'ckpt-last', args, logger = logger)
         if (config.max_epoch - epoch) < 10:
-            builder.save_checkpoint(base_model, optimizer, epoch, metrics, best_metrics, f'ckpt-epoch-{epoch:03d}', args, logger = logger)     
+            builder.save_checkpoint(base_model, optimizer, epoch, metrics, best_metrics, f'ckpt-epoch-{epoch:03d}', args, logger = logger)  
+
+    # After the training: calculate the CD value of the test set
+    print_log("\n===== Start computing Chamfer Distance on test set =====", logger=logger)
+    compute_cd_on_testset(args, config, logger,test_dataset) 
+
     if train_writer is not None:
         train_writer.close()
     if val_writer is not None:

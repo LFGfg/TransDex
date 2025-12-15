@@ -112,7 +112,7 @@ This project utilizes ROS and TwinCat communication for underlying motor control
 - Ensure all hardware devices is supplied with stable power and properly connected.
 - Dual RealSense cameras require hand-eye calibration and time synchronization.
 - Point cloud fusion necessitates coordinate transformation and ICP registration.
-- Calibrate robotic arm/dexterous hand joint zero position and set limits.
+- Calibrate robotic arm/dexterous hand joint zero positions and set limits.
 - Visualize the point cloud to ensure that the position of tactile points is calculated correctly.
 
 ---
