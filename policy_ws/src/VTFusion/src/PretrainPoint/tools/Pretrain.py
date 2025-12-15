@@ -166,7 +166,7 @@ def split_dataset(dataset, train_ratio=0.8, seed=42):
     )
     return train_dataset, test_dataset
 
-# -------------------------- New: Test Set CD Calculation Main Function --------------------------
+# -------------------------- Test Set CD Calculation Main Function --------------------------
 def compute_cd_on_testset(args, config, logger, test_dataset):
     """After training, load the best model and calculate CD values on the test set (20% validation set)"""
     # 1. Build dataset (consistent split with training)
