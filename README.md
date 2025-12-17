@@ -48,7 +48,7 @@ pip install -r requirements.txt
 #### 3. Build and install PointOps extension
 Adjust the path according to your project layout：
 ```bash
-cd /policy_ws/src/VTFusion/src/extensions/pointops
+cd ~/policy_ws/src/VTFusion/src/extensions/pointops
 python setup.py install
 ```
 
@@ -59,7 +59,7 @@ python setup.py install
 ### 1. Pretrain
 First enter the pre-training document directory：
 ```bash
-cd /policy_ws/src/VTFusion/src/PretrainPoint
+cd ~/policy_ws/src/VTFusion/src/PretrainPoint
 ```
 The code for the dataset processing and model in the pre-training stage can be found in `./models/Dataset_process_nor.py` and `./models/PretrainPoint.py`. Pre-trained data used in this project are generated in Pybullet simulator, and the dexterous hand used can be found in this [paper](https://ieeexplore.ieee.org/abstract/document/11031426). The example dataset will be released at Google Drive later.
 
@@ -67,7 +67,7 @@ The code for the dataset processing and model in the pre-training stage can be f
 
 😸 We strongly suggest that users generate corresponding point cloud datasets according to **your own dexterous hand systems** and process them in the format provided by the data processing codes. 
 
-👉🏻 Before training, please place the hand-object dataset in `/policy_ws/src/VTFusion/hand_object_data/hand_object_dataset/`, or make sure that `dataset.data_dir` in `./cfgs/pretrain_hand_object.yaml` should be changed to the storage location of your own dataset.
+👉🏻 Before training, please place the hand-object dataset in `~/policy_ws/src/VTFusion/hand_object_data/hand_object_dataset/`, or make sure that `dataset.data_dir` in `./cfgs/pretrain_hand_object.yaml` should be changed to the storage location of your own dataset.
 ```bash
 CUDA_VISIBLE_DEVICES=0 python main.py --config cfgs/pretrain_hand_object.yaml
 ```
@@ -76,8 +76,8 @@ The trained weight files can be found in `./experiments/pretrain_hand_object/`.
 
 To perform a simple evaluation across the entire dataset, you can run:
 ```bash
-export PYTHONPATH="/policy_ws/src/VTFusion/src:$PYTHONPATH"
-python models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-last.pth  --data_dir /policy_ws/src/VTFusion/hand_object_data/hand_object_dataset
+export PYTHONPATH="~/policy_ws/src/VTFusion/src:$PYTHONPATH"
+python ./models/Evaluation.py  --mask_ratio 0.70  --ckpt_path ./experiments/pretrain_hand_object/ckpt-last.pth  --data_dir ~/policy_ws/src/VTFusion/hand_object_data/hand_object_dataset
 ```
 
 ### 2. Policy
@@ -87,19 +87,19 @@ The real robotic system consists of a 16-DOF dexterous hand and a 7-DOF humanoid
 #### Policy Training
 Enter the document directory：
 ```bash
-cd /policy_ws/src/VTFusion/src/
+cd ~/policy_ws/src/VTFusion/src/
 ```
-The code for the dataset processing and model of the policy can be found in `./VTFusion_dataset.py` and `./FusionNetwork.py`. Users can collect manipulation dataset through **your own robotic system**.
+The code for the dataset processing and model of the policy can be found in `VTFusion_dataset.py` and `FusionNetwork.py`. Users can collect manipulation dataset through **your own robotic system**.
 
 👉🏻 Before training the policy, please ensure:
 - The pre-trained encoder weight file is copied to `./pretrain_pointencoder/ckpt.pth`.
-- Manipulation dataset is placed under `../data_record/task_name/`, and edit the `task_name` in the config file `config/config.yaml`.
-- Put the URDF file of the robot in `/policy_ws/src/LeftArmHandURDFV3`.
+- Manipulation dataset is placed under `../data_record/task_name/`, and edit the `task_name` in the config file `./config/config.yaml`.
+- Put the URDF file of the robot in `~/policy_ws/src/LeftArmHandURDFV3/`.
 - Adjust parameters such as `pos_mins/maxs`, `rpy_mins/maxs`, `joint_mins/maxs` in the config file according to robotic system and task. Relevant instructions are already commented in the sample config file `config/config.yaml`.
 
 Use the following script for training：
 ```bash
-CUDA_VISIBLE_DEVICES=0,1,2,3 python training.py --config config/config.yaml
+CUDA_VISIBLE_DEVICES=0,1,2,3 python ./training.py --config ./config/config.yaml
 ```
 The trained weight files can be found in `./ckpts/`.
 
