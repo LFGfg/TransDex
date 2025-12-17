@@ -59,4 +59,4 @@ model:
 total_bs: 64  
 step_per_update: 1
 grad_norm_clip: 10
-max_epoch: 500
+max_epoch: 800
