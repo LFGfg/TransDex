@@ -19,7 +19,7 @@ We propose **TransDex**,  a 3D visuo-tactile fusion motor policy based on point 
 - **Linux**: Ubuntu 20.04.
 - **CUDA version**: 12.9.1.
 - **Python version**: 3.9.
-- **PyTorch version**: the official build version adapted to CUDA 12.9.
+- **PyTorch version**: The official build version adapted to CUDA 12.9.
 
 ⚡ **Important**: Please ensure CUDA 12.9.1 and the corresponding PyTorch version are **already installed**. This guide does **not** cover CUDA/PyTorch installation.
 
