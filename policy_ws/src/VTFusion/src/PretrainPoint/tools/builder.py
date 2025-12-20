@@ -71,7 +71,7 @@ def build_opti_sche(base_model, config):
                 decay_rate=0.1,
                 warmup_lr_init=1e-6,
                 warmup_t=sche_config.kwargs.initial_epochs,
-                cycle_limit=1,
+                cycle_limit=3,
                 t_in_epochs=True)
     elif sche_config.type == 'StepLR':
         scheduler = torch.optim.lr_scheduler.StepLR(optimizer, **sche_config.kwargs)
