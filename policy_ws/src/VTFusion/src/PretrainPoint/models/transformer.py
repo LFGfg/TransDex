@@ -1,13 +1,12 @@
 import torch
 import torch.nn as nn
 from timm.models.layers import DropPath
-# 1. 获取项目顶级目录（extensions所在的目录，即src/）
-# 路径层级：src/ → 包含 extensions/ 和 PretrainPoint/
+
 TOP_DIR = os.path.abspath(os.path.join(
-    os.path.dirname(__file__),  # 当前文件路径：PretrainPoint/models/
-    "../.."  # 跳两级：PretrainPoint/models/ → PretrainPoint/ → src/
+    os.path.dirname(__file__),  
+    "../.."  
 ))
-# 2. 将顶级目录加入Python搜索路径（确保能找到extensions）
+
 if TOP_DIR not in sys.path:
     sys.path.append(TOP_DIR)
 from utils.logger import *

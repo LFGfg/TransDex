@@ -9,17 +9,16 @@ from utils.logger import *
 import random
 import os
 import sys
-# 1. 获取项目顶级目录（extensions所在的目录，即src/）
-# 路径层级：src/ → 包含 extensions/ 和 PretrainPoint/
+
 TOP_DIR = os.path.abspath(os.path.join(
-    os.path.dirname(__file__),  # 当前文件路径：PretrainPoint/models/
-    "../.."  # 跳两级：PretrainPoint/models/ → PretrainPoint/ → src/
+    os.path.dirname(__file__), 
+    "../.."  
 ))
-# 2. 将顶级目录加入Python搜索路径（确保能找到extensions）
+
 if TOP_DIR not in sys.path:
     sys.path.append(TOP_DIR)
 
-# 3. 绝对导入pointops（此时Python能找到src/extensions）
+
 from extensions.pointops.functions import pointops
 from .transformer import TransformerEncoder, TransformerDecoder, Group, DummyGroup, Encoder
 from .detr.build import build_encoder as build_encoder_3detr, build_preencoder as build_preencoder_3detr
@@ -154,63 +153,6 @@ class PointTransformer(nn.Module):
         ret = self.cls_head_finetune(concat_f)
         return ret
 
-
-# 自定义数据集类
-class PCDDataset(Dataset):
-    def __init__(self, data_dir):
-        self.data_dir = data_dir
-        self.data_files = []
-        self.label_files = []
-        for file in os.listdir(data_dir):
-            if file.endswith('.pcd'):
-                parts = file.split('_')
-                index_str = parts[-1].replace('.pcd', '')
-                index = int(index_str)
-                if index in [1, 11, 21, 31]:
-                    self.label_files.append(os.path.join(data_dir, file))
-                    self.data_files.append(os.path.join(data_dir, file))
-
-                else:
-                    self.data_files.append(os.path.join(data_dir, file))
-
-    def __len__(self):
-        return len(self.data_files)
-
-    def __getitem__(self, idx):
-        data_file = self.data_files[idx]
-        # 提取 object_name、scale 和 index
-        parts = data_file.split('_')
-        object_name = "_".join(parts[:-2])
-        scale = parts[-2].replace('scale', '')
-        index_str = parts[-1].replace('.pcd', '')
-        index = int(index_str)
-
-        if 1<= index <= 10:
-            label_index = 1
-        elif 11 <= index <= 20:
-            label_index = 11
-        elif 21 <= index <= 30:
-            label_index = 21
-        else:
-            label_index = 31
-
-        # 筛选出符合 object_name、scale 和 label_index 的标签文件
-        label_file =[f for f in self.label_files if object_name in f and f'scale{scale}' in f and f'_{label_index}.pcd' in f][0]
-
-        data_pcd = o3d.io.read_point_cloud(data_file)
-        label_pcd = o3d.io.read_point_cloud(label_file)
-
-        # 提取点坐标和颜色信息
-        data_points = torch.tensor(data_pcd.points, dtype=torch.float32)
-        data_colors = torch.tensor(data_pcd.colors, dtype=torch.float32)
-        label_points = torch.tensor(label_pcd.points, dtype=torch.float32)
-        label_colors = torch.tensor(label_pcd.colors, dtype=torch.float32)
-
-        # 合并点坐标和颜色信息
-        data = torch.cat((data_points, data_colors), dim=1)
-        label = torch.cat((label_points, label_colors), dim=1)
-
-        return data, label
 
 class MaskPointTransformer(nn.Module):
     def __init__(self, config, **kwargs):
