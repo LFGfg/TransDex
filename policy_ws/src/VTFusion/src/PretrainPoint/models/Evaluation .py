@@ -28,49 +28,37 @@ from models.PretrainPoint import PretrainPoint
 
 
 def compute_chamfer_distance(pred_pc, labels_pc):
-    """
-    Calculate Chamfer Distance between two point clouds
-    
-    Parameters:
-    pred_pc: Predicted point cloud
-    labels_pc: Ground truth point cloud
-    
-    Returns:
-    chamfer_distance: Chamfer Distance value
-    """
-    # Ensure inputs are Open3D point cloud objects
+    """（Chamfer Distance）"""
+
     if not isinstance(pred_pc, o3d.geometry.PointCloud):
-        pred_pc = o3d.geometry.PointCloud(pred_pc)
-    
+        pred_pc = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(pred_pc))
     if not isinstance(labels_pc, o3d.geometry.PointCloud):
-        labels_pc = o3d.geometry.PointCloud(labels_pc)
+        labels_pc = o3d.geometry.PointCloud(o3d.utility.Vector3dVector(labels_pc))
     
-    # Build KD-Tree for nearest neighbor search
+
     labels_tree = o3d.geometry.KDTreeFlann(labels_pc)
     pred_tree = o3d.geometry.KDTreeFlann(pred_pc)
     
-    # Get point cloud points
     pred_points = np.asarray(pred_pc.points)
     labels_points = np.asarray(labels_pc.points)
     
-    # Calculate distance from predicted to ground truth point cloud
+ 
+    if len(pred_points) == 0 or len(labels_points) == 0:
+        return float('inf')
+
     pred_to_labels = 0.0
     for point in pred_points:
         [k, idx, _] = labels_tree.search_knn_vector_3d(point, 1)
         pred_to_labels += np.sum((point - labels_points[idx[0]]) ** 2)
     pred_to_labels /= len(pred_points)
-    
-    # Calculate distance from ground truth to predicted point cloud
+
     labels_to_pred = 0.0
     for point in labels_points:
         [k, idx, _] = pred_tree.search_knn_vector_3d(point, 1)
         labels_to_pred += np.sum((point - pred_points[idx[0]]) ** 2)
     labels_to_pred /= len(labels_points)
     
-    # Chamfer Distance is the average of two directional distances
-    chamfer_distance = pred_to_labels + labels_to_pred
-    
-    return chamfer_distance
+    return pred_to_labels + labels_to_pred
 
 
 class Config:
@@ -116,7 +104,12 @@ def farthest_point_sample(data, npoints):
     Returns:
         Sampled point tensor with shape [npoints, D]
     """
+    
     N, D = data.shape  # N: number of points, D: dimension
+    if N == 0:
+        return torch.empty_like(data) 
+    if npoints > N:
+        npoints = N 
     xyz = data[:, :3]  # Only need coordinate information
     centroids = torch.zeros(size=(npoints,))  # Final sampled point indices
     distance = torch.ones(size=(N,)) * 1e10  # Distance list (initialized to large value)
@@ -229,9 +222,11 @@ if __name__ == '__main__':
             # Save CD value for current sample
             all_cd_values.append(cd)
     
-    # Calculate average CD value
+     # Calculate average CD value
     if all_cd_values:
-        avg_cd = sum(all_cd_values) / len(all_cd_values)
-        print(f'\nAverage Chamfer Distance: {avg_cd:.6f}')
+        valid_cd = [v for v in all_cd_values if not np.isinf(v)]
+        if valid_cd:
+            avg_cd = np.mean(valid_cd)
+            print(f'\nAverage Chamfer Distance: {avg_cd:.6f}')
     else:
         print('No valid CD values were collected.')
