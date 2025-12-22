@@ -5,7 +5,7 @@ Fengguan Li, Yifan Ma, Wentao Rao, Weiwei Shang, Chen Qian
 
 <br/>
 
-<img src="policy_ws\image\Method Overview.png" align="middle" width="100%"/> 
+<img src="policy_ws\image\Method Overview.png" align="middle" width="90%"/> 
 
 <br/>
 
