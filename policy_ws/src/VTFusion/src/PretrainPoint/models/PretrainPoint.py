@@ -426,48 +426,48 @@ class PretrainPoint(nn.Module):
         with torch.no_grad():
             neighborhood, center = self.group_divider(pts)
             cls_feature, query_preds, query_labels = self.transformer_q(neighborhood, center, pts, lables_points, only_cls_tokens = False, noaug = False)
-            # 计算准确率
+            # Calculate accuracy
             query_preds = query_preds.transpose(1, 2).contiguous().to(pts.device)
             query_labels=query_labels.to(pts.device)
             # if self.use_sigmoid:
-            #     # 对预测结果进行 sigmoid 操作并根据阈值判断类别
+            #     # Apply sigmoid to prediction results and determine categories based on threshold
             #     preds = torch.sigmoid(query_preds).squeeze().argmax(dim=-1)
             # else:
-            #     # 直接获取最大概率的索引作为预测类别
+            #     # Directly get the index of the maximum probability as the predicted category
             #     preds = query_preds.squeeze().argmax(dim=-1)
 
-            # # 将标签为 -1 的样本转换为 1
+            # # Convert samples with label -1 to 1
             query_labels[query_labels == -1] = 1
 
             # accuracy = Accuracy(task='multiclass', num_classes=2).to(pts.device)
             # acc = accuracy(preds, query_labels)
-            # 获取预测的类别
+            # Get predicted categories
             predicted_classes = torch.argmax(query_preds, dim=-1)
 
-            # 计算预测正确的样本数量
+            # Calculate the number of correctly predicted samples
             correct_predictions = (predicted_classes == query_labels).sum().item()
 
-             # 计算精确率和召回率（假设类别1为正例）
+             # Calculate precision and recall (assuming category 1 is positive)
             true_positives = ((predicted_classes == 1) & (query_labels == 1)).sum().float()
             false_positives = ((predicted_classes == 1) & (query_labels == 0)).sum().float()
             false_negatives = ((predicted_classes == 0) & (query_labels == 1)).sum().float()
             
-            # 避免除零错误
+            # Avoid division by zero error
             precision = true_positives / (true_positives + false_positives) if (true_positives + false_positives) > 0 else 0
             recall = true_positives / (true_positives + false_negatives) if (true_positives + false_negatives) > 0 else 0
 
         
 
-            # 计算准确率
+            # Calculate accuracy
             total_samples = query_labels.numel()
             acc = correct_predictions / total_samples if total_samples > 0 else 0
             acc=torch.tensor(acc).cuda()
             nonzero_count = torch.count_nonzero(predicted_classes)
 
-            # 计算张量的总元素数
+            # Calculate the total number of elements in the tensor
             total_count = predicted_classes.numel()
 
-            # 计算元素为 0 的个数
+            # Calculate the number of elements with value 0
             zero_count = total_count - nonzero_count
             print('0 of predicted_classes:',zero_count)
             return cls_feature , acc, precision, recall

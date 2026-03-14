@@ -453,11 +453,9 @@ def validate(base_model, train_dataloader, test_dataloader, epoch, val_writer, a
             points,label = train_transforms(points,label)
 
             _, acc, precision, recall = base_model(points, label, noaug=True, return_acc_=True)
-            # 计算当前批次的样本数量
             batch_size = points.size(0)
             # print(batch_size)
             # print('acc_mean',acc.mean())
-            # 计算F1分数
             f1 = 2 * (precision * recall) / (precision + recall) if (precision + recall) > 0 else 0
     
             total_accuracy += acc.mean() * batch_size
@@ -474,7 +472,7 @@ def validate(base_model, train_dataloader, test_dataloader, epoch, val_writer, a
             average_f1 = total_f1 / total_samples
             
             if isinstance(average_accuracy, torch.Tensor):
-                average_accuracy = average_accuracy.item()  # 将张量转换为标量
+                average_accuracy = average_accuracy.item()  
             if isinstance(average_precision, torch.Tensor):
                 average_precision = average_precision.item()
             if isinstance(average_recall, torch.Tensor):
