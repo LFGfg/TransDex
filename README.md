@@ -94,7 +94,7 @@ The code for the dataset processing and model of the policy can be found in `VTF
 👉🏻 Before training the policy, please ensure:
 - The pre-trained encoder weight file is copied to `./pretrain_pointencoder/ckpt.pth`.
 - Manipulation dataset is placed under `../data_record/task_name/`, and edit the `task_name` in the config file `./config/config.yaml`.
-- Put the URDF file of the robot in `~/policy_ws/src/LeftArmHandURDFV3/`.
+- Put the URDF file of the robot in `~/policy_ws/src/URDF/`.
 - Adjust parameters such as `pos_mins/maxs`, `rpy_mins/maxs`, `joint_mins/maxs` in the config file according to robotic system and task. Relevant instructions are already commented in the sample config file `config/config.yaml`.
 
 Use the following script for training：
@@ -113,7 +113,7 @@ This project utilizes ROS and TwinCat communication for underlying motor control
 - Dual RealSense cameras require hand-eye calibration and time synchronization.
 - Point cloud fusion necessitates coordinate transformation and ICP registration.
 - Calibrate robotic arm/dexterous hand joint zero positions and set limits.
-- Visualize the point cloud to ensure that the position of tactile points is calculated correctly.
+- Visualize the point cloud to ensure that the 3D position of tactile points is calculated correctly.
 
 ---
 
