@@ -1,4 +1,4 @@
-# TransDex: Pre-training Visuo-Tactile Policy with Point Cloud Reconstruction for Dexterous Manipulation of Transparent Objects
+# TransDex: Interaction Geometry Enables Robust Visuo-Tactile Dexterous Manipulation of Transparent Objects
 <div align="center">
 
 [🌐**Project Page**](https://transdex.github.io/) | [📄**Arxiv**](https://arxiv.org/abs/2603.13869v2/) | [🎬**Video**](https://drive.google.com/file/d/1PrWKEPRXbquK9Mijys6oIlJT7UEbs40b/view?usp=drive_link)
