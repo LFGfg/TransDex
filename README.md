@@ -7,7 +7,7 @@ Fengguan Li, Yifan Ma, Chen Qian, Wentao Rao, Weiwei Shang
 
 **University of Science and Technology of China**
 
-🎉🎉🎉 <span style="color:#d62828; font-weight:bold;">Accepted by IEEE RA-L！</span>
+🎉🎉🎉 $\color{#d62828}{\textbf{Accepted by IEEE RA-L！}}$
 
 </div>
 <br/>
