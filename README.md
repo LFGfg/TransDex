@@ -126,10 +126,13 @@ This project utilizes ROS and TwinCat communication for underlying motor control
 😄 If you find our work useful, please consider citing:
 ```bibtex
 @article{li2026transdex,
-  title={TransDex: Pre-training Visuo-Tactile Policy with Point Cloud Reconstruction for Dexterous Manipulation of Transparent Objects},
   author={Li, Fengguan and Ma, Yifan and Qian, Chen and Rao, Wentao and Shang, Weiwei},
-  journal={arXiv preprint arXiv:2603.13869},
-  year={2026}
+  journal={IEEE Robotics and Automation Letters}, 
+  title={TransDex: Interaction Geometry Enables Robust Visuo-Tactile Dexterous Manipulation of Transparent Objects}, 
+  year={2026},
+  volume={11},
+  number={11},
+  pages={12671-12678}
 }
 ```
 
